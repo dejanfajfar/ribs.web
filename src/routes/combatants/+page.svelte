@@ -9,7 +9,7 @@
     } 
 </script>
 
-<h1>Combatants</h1>
+<h1 class="text-3xl font-bold underline">Combatants</h1>
 
 <p>{combatant.name}</p>
 <img src="/{combatant.avatar}" alt="{combatant.name}"/>
