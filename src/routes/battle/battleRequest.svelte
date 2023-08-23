@@ -1,12 +1,14 @@
 <script lang="ts">
 	import * as Api from '$lib/api';
+	import CombatantSelector from '$lib/components/combatant_selector.svelte';
 
-	function Validate(e: SubmitEvent) {}
+	let combatants = Api.getCombatants();
 </script>
 
 <div id="BattleRequest" class="w-full my-3">
 	<form
-		on:submit|preventDefault={Validate}
+		method="post"
+		action="?/start"
 		class="w-3/4 mx-auto p-2 border-2 shadow-md rounded-2xl bg-white"
 	>
 		<div class="section">
@@ -17,11 +19,21 @@
 			</div>
 			<div class="mb-4 pl-3">
 				<label for="mheight">Height</label>
-				<input type="number" max="256" required id="mheight" name="mwith" />
+				<input type="number" max="256" required id="mheight" name="mheight" />
 			</div>
 		</div>
 		<div class="section">
 			<h2>Combatants</h2>
+
+			<CombatantSelector {combatants} />
+		</div>
+		<div>
+			<button
+				class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+				type="submit"
+			>
+				Start Battle
+			</button>
 		</div>
 	</form>
 </div>

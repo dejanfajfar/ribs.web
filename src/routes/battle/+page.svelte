@@ -3,9 +3,3 @@
 </script>
 
 <BattleRequestForm />
-
-<style lang="postcss">
-	:global(html) {
-		@apply bg-slate-100;
-	}
-</style>

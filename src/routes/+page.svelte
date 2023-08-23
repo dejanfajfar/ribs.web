@@ -22,5 +22,7 @@
 <h1>R.I.B.S</h1>
 
 <a href="/combatants">Combatants</a>
+<br/>
+<a href="/battle">Battle</a>
 
 <MapPath {map} {path} />
