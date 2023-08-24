@@ -1,14 +1,39 @@
 <script lang="ts">
+	import { selectedCombatants } from '$lib/store';
 	import * as Api from '$lib/api';
 	import CombatantSelector from '$lib/components/combatant_selector.svelte';
+	import type { Combatant } from '$lib/types';
 
 	let combatants = Api.getCombatants();
+	let chosen: Combatant[] = [];
+
+	selectedCombatants.subscribe(cs => chosen = cs);
+
+	function onSubmit(e: SubmitEvent) {
+		const formData = new FormData(e.target as HTMLFormElement);
+		const data: any = {};
+		for (let field of formData) {
+			const [key, value] = field;
+			data[key] = value;
+		}
+
+		let battleRequest: Api.BattleRequest = {
+			map: {
+				height: data.mheight,
+				width: data.mwith
+			},
+			combatants: chosen
+		};
+
+		Api.startBattle(battleRequest);
+		console.log(battleRequest);
+	}
 </script>
 
 <div id="BattleRequest" class="w-full my-3">
 	<form
+		on:submit|preventDefault={onSubmit}
 		method="post"
-		action="?/start"
 		class="w-3/4 mx-auto p-2 border-2 shadow-md rounded-2xl bg-white"
 	>
 		<div class="section">

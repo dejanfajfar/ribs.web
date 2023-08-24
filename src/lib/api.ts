@@ -10,8 +10,24 @@ export interface BattleRequest {
 
 export interface BattleResult {}
 
-export function startBattle(request: BattleRequest): BattleResult {
-	return {};
+export async function startBattle(request: BattleRequest): Promise<BattleResult> {
+
+	let formattedRequest = {
+		battlefield: {
+			height: request.map.height,
+			width: request.map.width,
+			combatants : request.combatants
+		}
+	}
+
+	let result = await fetch('/api/battle/', {
+		method: 'POST',
+		body: JSON.stringify(request)
+	});
+
+	const json = await result.json();
+
+	return {}
 }
 
 

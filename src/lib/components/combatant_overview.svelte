@@ -1,5 +1,18 @@
 <script lang="ts">
 	import type { Combatant } from '$lib/types';
+	import { createEventDispatcher } from 'svelte';
+
+  	const dispatch = createEventDispatcher();
+
+	function setSelectionState(){
+		selected = !selected;
+		if (selected) {
+			dispatch('selected', combatant);
+		}
+		else {
+			dispatch('deselected', combatant);
+		}
+	}
 
 	export let combatant: Combatant;
 	export let selected: boolean;
@@ -9,8 +22,8 @@
 	role="button"
 	tabindex="0"
 	class="max-w-xs overflow-hidden shadow-lg my-4 cursor-pointer {selected? 'selected' : ''}"
-	on:click={() => selected = !selected}
-	on:keypress={() => selected = !selected}
+	on:click={setSelectionState }
+	on:keypress={setSelectionState }
 >
 	<div>
 		<img class="w-12 inline-block mx-3" src="/{combatant.avatar}" alt={combatant.name} />
