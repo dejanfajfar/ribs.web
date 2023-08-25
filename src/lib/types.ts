@@ -3,6 +3,7 @@ export type Combatant = {
 	avatar: string;
 	hp: number;
 	dmg: number;
+	id: string;
 };
 
 export type Map = {

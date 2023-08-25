@@ -10,26 +10,6 @@ export interface BattleRequest {
 
 export interface BattleResult {}
 
-export async function startBattle(request: BattleRequest): Promise<BattleResult> {
-
-	let formattedRequest = {
-		battlefield: {
-			height: request.map.height,
-			width: request.map.width,
-			combatants : request.combatants
-		}
-	}
-
-	let result = await fetch('/api/battle/', {
-		method: 'POST',
-		body: JSON.stringify(request)
-	});
-
-	const json = await result.json();
-
-	return {}
-}
-
 
 export function getCombatants(): Combatant[] {
 	return [
@@ -37,61 +17,71 @@ export function getCombatants(): Combatant[] {
 			avatar: '01_300px.jpg',
 			name: 'Baton Girl',
 			dmg: 2,
-			hp: 20
+			hp: 20,
+			id: '01'
 		},
 		{
 			avatar: '02_300px.jpg',
 			name: 'Digital Horns',
 			dmg: 2,
-			hp: 20
+			hp: 20,
+			id: '02'
 		},
 		{
 			avatar: '03_300px.jpg',
 			name: 'Angel Eyes',
 			dmg: 2,
-			hp: 20
+			hp: 20,
+			id: '03'
 		},
 		{
 			avatar: '04_300px.jpg',
 			name: 'Jawa',
 			dmg: 2,
-			hp: 20
+			hp: 20,
+			id: '04'
 		},
 		{
 			avatar: '05_300px.jpg',
 			name: 'Be not afraid',
 			dmg: 2,
-			hp: 20
+			hp: 20,
+			id: '05'
 		},
 		{
 			avatar: '06_300px.jpg',
 			name: 'Happy Ballon',
 			dmg: 2,
-			hp: 20
+			hp: 20,
+			id: '06'
 		},
 		{
 			avatar: '07_300px.jpg',
 			name: 'Anonymous',
 			dmg: 2,
-			hp: 20
+			hp: 20,
+			id: '07'
 		},
 		{
 			avatar: '08_300px.jpg',
 			name: 'The crown',
 			dmg: 2,
-			hp: 20
+			hp: 20,
+			id: '08'
 		},
 		{
 			avatar: '09_300px.jpg',
 			name: 'Worm thing',
 			dmg: 2,
-			hp: 20
+			hp: 20,
+			id: '09'
 		},
 		{
 			avatar: '10_300px.jpg',
 			name: 'Oppai',
 			dmg: 2,
-			hp: 20
+			hp: 20,
+			id: '10'
 		}
 	];
 }

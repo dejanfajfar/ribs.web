@@ -7,9 +7,9 @@
 	let combatants = Api.getCombatants();
 	let chosen: Combatant[] = [];
 
-	selectedCombatants.subscribe(cs => chosen = cs);
+	selectedCombatants.subscribe((cs) => (chosen = cs));
 
-	function onSubmit(e: SubmitEvent) {
+	async function onSubmit(e: SubmitEvent) {
 		const formData = new FormData(e.target as HTMLFormElement);
 		const data: any = {};
 		for (let field of formData) {
@@ -19,14 +19,18 @@
 
 		let battleRequest: Api.BattleRequest = {
 			map: {
-				height: data.mheight,
-				width: data.mwith
+				height: parseInt(data.mheight),
+				width: parseInt(data.mwith)
 			},
 			combatants: chosen
 		};
 
-		Api.startBattle(battleRequest);
-		console.log(battleRequest);
+		let result = await fetch('/api/battle/', {
+			method: 'POST',
+			body: JSON.stringify(battleRequest)
+		});
+		
+		const json = await result.json();
 	}
 </script>
 
